@@ -1,0 +1,68 @@
+# Path
+# ~/.zshrc
+# ~/.functionrc
+# ~/.vimrc
+
+# Alias Group List
+alias aliasfunction='echo -e " \n\
+exa(eza) \n\
+find \n\
+font \n\
+pkg "'
+
+# Exa
+alias lsls='echo eza --icons;eza --icons'
+alias lsal='echo eza --icons --long --all;eza --icons --long --all'
+alias lsl='echo eza --icons -lbF --git;eza --icons -lbF --git'
+alias lsll='echo eza --icons -lbGF --git;eza --icons -lbGF --git'
+alias lsllm='echo eza --icons -lbGF --git --sort=modified;eza --icons -lbGF --git --sort=modified'
+alias lslS='echo eza --icons -1;eza --icons -1'
+alias lslt='eza --icons --tree --level=2;eza --icons --tree --level=2'
+alias aliasexa='echo -e "ls=eza --icons \n\
+lsal=eza --icons --long --all \n\
+lsl=eza --icons -lbF --git \n\
+lsll=eza --icons -lbGF --git \n\
+lsllm=eza --icons -lbGF --git --sort=modified \n\
+lslS=eza --icons -1 \n\
+lslt=eza --icons --tree --level=2"'
+
+# Sudo (caution: following sudo, space)
+alias sudo="sudo "
+
+
+
+alias zshrc='vim ~/.zshrc'
+alias configrc='vim ~/.configrc'
+alias vimrc='vim ~/.vimrc'
+alias aliasrc='vim ~/.aliasrc'
+alias functionrc='vim ~/.functionrc'
+
+# Pkg
+# All installed file for specific package
+alias pkgfile='rpm -ql'" $*"
+alias dnfpkgfile='dnf repoquery -l'" $*"
+alias pkginstall='apt list --installed | grep '"$*"
+alias aliaspkg='echo -e "패키지 관련 모든파일 : pkgfile : rpm -ql \n\
+패키지 관련 모든파일(원격패키지 제공) : dnfpkgfile : dnf repoquery -l \n\
+설치된 패키지 확인 : pkginstall : apt list --installed | grep  \n\
+pipx로 설치된 패키지 : pipx list \n\
+"'
+
+
+
+# Font
+alias fontlist='fc-list'
+alias fontlistkr='fc-list :lang=ko'
+alias fontsearch='fc-list | grep '"$*"
+alias fontcache='fc-cache -f -v'
+alias fontdir='echo /usr/share/fonts/'
+alias aliasfont='echo -e "사용가능한 폰트확인 - alias: fontlist, command: fc-list \n\
+시스템에 있는 설치된 폰트캐쉬 - alias: fontcache, command: fc-cache -f -v \n\
+한글폰트확인 - alias: fontlistkr, command: fc-list :langko \n\
+폰트위치 - alias: fontdir \n\
+폰트검색 - alias: fontsearch"'
+
+
+# ETC
+alias rainbow='colout "(\w|\W)" rainbow'
+

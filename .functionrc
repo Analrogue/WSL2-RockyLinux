@@ -1,0 +1,132 @@
+# Source ~/.zshrc
+function ../. {
+clear && echo "source zshrc .." | colout "(\w|\W)" red && source ~/.zshrc
+}
+
+# Output Colorization
+
+#grepcc() {
+#grep --color=always -E "$1|$" $2
+#}
+#mancc() {
+#man $1 | grepc '(^|\s)(\-){1,2}(\w+(\-){0,2}\w*(\-){0,2}\w*={0,1}\w*|\s)'| less -R
+#}
+
+#grep
+grepc() {
+grep -E "$1|$" $2 | colout "^.*$" Random | less -R
+}
+
+#man
+manc() {
+man $1 | colout "^.*$" Random | less -R
+}
+
+#--help
+helpc() {
+$1 --help | colout "^.*$" Random | less -R
+}
+
+
+
+# Find
+function fd() {
+echo "find / ! \( -path '/mnt' -prune \) -name 'keyword'"
+sudo find / ! \( -path '/mnt' -prune \) -name "$1" 2>&1 | grep -v "File system loop detected"
+}
+alias fnd='find / ! \( -path "/mnt" -prune \) -name'
+alias aliasfind='echo -e "alias: fd or fnd, command: find / ! \( -path "/mnt" -prune \) -name"'
+
+# Github
+cdgit() {
+cd ~/.dotfiles/.github/WSL2-RockyLinux/
+}
+
+gitpush() {
+echo 'pushd ~/.dotfiles/.github/WSL2-RockyLinux/'
+pushd ~/.dotfiles/.github/WSL2-RockyLinux/
+echo '>> git add .'
+git add .
+echo -e "\n"'>> git commit -m '\''rocky basic configuration file'\'
+git commit -m 'rocky basic configuration file'
+echo -e "\n"'>> git push'
+git push
+echo -e "\n"'>> git status'
+git status
+pushd
+}
+
+gitremove() {
+echo '>> git pull origin main'
+git pull origin main
+echo -e "\n"'>> git rm '"$@"
+git rm $@
+echo -e "\n"'>> git commit -m '\''remove '\'"$@"
+git commit -m 'remove '"$@"
+echo -e "\n"'>> git push origin main'
+git push origin main
+echo -e "\n"'>> git status'
+git status
+}
+
+gitproblem() {
+echo '>> git config pull.rebase false'
+git config pull.rebase false
+}
+
+alias push='cdgit && gitpush && ~'
+
+alias aliasgit='echo -e "cdgit : cd ~/.dotfiles/.github/WSL2-RockyLinux/ \n\
+gitpush : git add . && git commit -m && git push \n\
+gitremove : git pull && git rm (file) && git commit -m && git push origin main \n\
+gitproblem : git config pull.rebase false (remote origin branch change import and merge local) \n\
+"'
+
+
+
+
+
+
+
+# cowsay : https://itsfoss.com/cowsay/
+# Randomize Cowsay Style
+function cowsayrandom {
+if type shuf > /dev/null; then
+  cowfile="$(cowsay -l | sed "1 d" | tr ' ' '\n' | shuf -n 1)"
+else
+  cowfiles=( $(cowsay -l | sed "1 d") );
+  cowfile=${cowfiles[$(($RANDOM % ${#cowfiles[*]}))]}
+fi
+cowsay -f "$cowfile"
+}
+
+
+# fortune + cowsayrandom + lolcat
+function fortunecowsayrandom {
+  fortune | cowsayrandom | lolcat
+}
+
+# weather + cowsayrandom + lolcat
+function weathercowsayrandomlolcat {
+  curl -s 'ko.wttr.in/서울?format=%l:+%m+%c+바람:%w+기온:%t+습도:%h\n' | cowsayrandom | lolcat
+}
+
+# weahter + cowsayrandom + colout
+# colout : https://github.com/nojhan/colout
+function weathercowsayrandomcolout {
+  curl -s 'ko.wttr.in/서울?format=%l:+%m+%c+바람:%w+기온:%t+습도:%h\n' | cowsayrandom | colout "(\w|\W)" hash
+}
+
+# cowsay와 pony random execute
+function randomcommand1 {
+  command1="weathercowsayrandomlolcat"
+  command2="weathercowsayrandomcolout"
+  #command2="fortune | ponysay | lolcat"
+  random_choice=$((RANDOM%2)) # 0,1 Random Generate
+  if [ $random_choice -eq 0 ]
+  then
+    eval $command1
+  else
+    eval $command2
+  fi
+}

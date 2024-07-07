@@ -1,0 +1,45 @@
+# Source
+source ~/.functionrc
+source ~/.aliasrc
+
+
+
+# # Option Configuration
+# history no 'first space', 'duplicate'
+export HISTCONTROL=ignoreboth
+
+
+
+# Display
+# Colored Grep_Colors
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+export GREP_COLORS='ms=31:mc=32:sl=33:cx=36:fn=33:ln=34:bn=37:se=32'
+#export GREP_COLORS='ms=31:mc=32:sl=35:cx=36:fn=33:ln=34:bn=37:se=32'
+
+#Colored Man Page Reference
+#https://wiki.archlinux.org/title/Color_output_in_console#man
+
+# Manpager (Default with Color. Config File ~/.mostrc)
+#export MANPAGER="most"
+
+# Colored Man Page (with less)
+export MANPAGER="less"
+#export MANPAGER="less -R --use-color -Dd+r -Du+b"
+#export MANROFFOPT="-P -c"
+
+# Colored Man Page (with bat)
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+#export MANROFFOPT="-c"
+#
+#
+
+# PATH
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
+
+# cowfiles setup
+# https://github.com/bkendzior/cowfiles/blob/master/README.md
+COWPATH="$COWPATH:$HOME/.cowsay/cowfiles"
+
+# Startup
+randomcommand1
