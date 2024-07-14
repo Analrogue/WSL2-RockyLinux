@@ -1,6 +1,6 @@
 # Source ~/.zshrc
 function ../. {
-clear && echo "source zshrc .." | colout "(\w|\W)" red && source ~/.zshrc
+clear && echo "Reload ZSH..." | colout "(\w|\W)" hash && sleep 3 && clear && source ~/.zshrc
 }
 
 # Output Colorization
