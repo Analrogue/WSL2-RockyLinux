@@ -114,7 +114,7 @@ function weathercowsayrandomlolcat {
 # weahter + cowsayrandom + colout
 # colout : https://github.com/nojhan/colout
 function weathercowsayrandomcolout {
-  curl -s 'ko.wttr.in/서울?format=%l:+%m+%c+바람:%w+기온:%t+습도:%h\n' | cowsayrandom | colout "(\w|\W)" hash
+  curl -s 'ko.wttr.in/서울?format=%l:+%m+%c+바람:%w+기온:%t+습도:%h+체감온도:%f\n' | cowsayrandom | colout "(\w|\W)" hash
 }
 
 # cowsay와 pony random execute
