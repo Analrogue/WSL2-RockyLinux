@@ -43,8 +43,8 @@ cd ~/.dotfiles/.github/WSL2-RockyLinux/
 }
 
 gitpush() {
-echo 'pushd ~/.dotfiles/.github/WSL2-RockyLinux/'
-pushd ~/.dotfiles/.github/WSL2-RockyLinux/
+echo 'cd ~/.dotfiles/.github/WSL2-RockyLinux/'
+cd ~/.dotfiles/.github/WSL2-RockyLinux/
 echo '>> git add .'
 git add .
 echo -e "\n"'>> git commit -m '\''rocky basic configuration file'\'
@@ -53,7 +53,7 @@ echo -e "\n"'>> git push'
 git push
 echo -e "\n"'>> git status'
 git status
-pushd
+cd -
 }
 
 gitremove() {
